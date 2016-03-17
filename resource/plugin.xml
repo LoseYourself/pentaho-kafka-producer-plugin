@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <plugin
-   id="KafkaConsumer"
+   id="KafkaProducer"
    iconfile="KAFKAP.png"
    description="Apache Kafka Producer"
    tooltip="This plug-in allows writing messages through a specific topic into a Kafka stream"
