@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/kettle-core.jar"/>
+	<classpathentry kind="lib" path="lib/kettle-db.jar"/>
+	<classpathentry kind="lib" path="lib/kettle-dbdialog.jar"/>
+	<classpathentry kind="lib" path="lib/kettle-engine.jar"/>
+	<classpathentry kind="lib" path="lib/kettle-ui-swt.jar"/>
+	<classpathentry kind="lib" path="libext/kafka/jline-0.9.94.jar"/>
+	<classpathentry kind="lib" path="libext/kafka/jopt-simple-3.2.jar"/>
+	<classpathentry kind="lib" path="libext/kafka/junit-3.8.1.jar"/>
+	<classpathentry kind="lib" path="libext/kafka/kafka_2.10-0.8.2.1.jar"/>
+	<classpathentry kind="lib" path="libext/kafka/kafka-clients-0.8.2.1.jar"/>
+	<classpathentry kind="lib" path="libext/kafka/lz4-1.2.0.jar"/>
+	<classpathentry kind="lib" path="libext/kafka/metrics-core-2.2.0.jar"/>
+	<classpathentry kind="lib" path="libext/kafka/netty-3.7.0.Final.jar"/>
+	<classpathentry kind="lib" path="libext/kafka/scala-library-2.10.4.jar"/>
+	<classpathentry kind="lib" path="libext/kafka/snappy-java-1.1.1.6.jar"/>
+	<classpathentry kind="lib" path="libext/kafka/zkclient-0.3.jar"/>
+	<classpathentry kind="lib" path="libext/kafka/zookeeper-3.4.6.jar"/>
+	<classpathentry kind="lib" path="libswt/commands.jar"/>
+	<classpathentry kind="lib" path="libswt/common.jar"/>
+	<classpathentry kind="lib" path="libswt/jface.jar"/>
+	<classpathentry kind="lib" path="libswt/runtime.jar"/>
+	<classpathentry kind="lib" path="libswt/win64/swt.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

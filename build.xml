@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Kafka Producer Plugin" default="default" basedir=".">
+
+	<description>
+          pdi step plugin build file
+      </description>
+
+	<tstamp prefix="start" />
+
+	<tstamp>
+		<format property="compile.timestamp" pattern="yyyy-MM-dd HH.mm.ss" />
+	</tstamp>
+
+
+	<!-- set global properties for this build -->
+	<property file="build.properties" />
+
+	<target name="init" description="create timestamp and directories">
+		<echo>Init...</echo>
+
+		<tstamp />
+		<mkdir dir="${build}" />
+		<mkdir dir="${classes}" />
+		<mkdir dir="${classes}/META-INF" />
+		<mkdir dir="${distrib}" />
+
+		<!--<exec executable="get-revision.sh" os="Linux,OSX" outputproperty="svn-revision" failonerror="false" timeout="1000" failifexecutionfails="false" resolveexecutable="true" spawn="false" />-->
+
+		<condition property="revision" value="${svn-revision}" else="1">
+			<length string="${svn-revision}" length="7" when="less" />
+		</condition>
+
+		<echo message="Revision set to r${revision}" />
+
+	</target>
+
+	<!--
+           ==========================
+                Compile the code
+           ==========================
+      -->
+
+	<target name="compile" depends="init" description="compile the source code ">
+		<echo>Compiling Plugin...</echo>
+		<javac fork="true" destdir="${classes}" target="5" source="5" deprecation="true" debug="${debug}" optimize="${optimize}" memorymaximumsize="256m" includeantruntime="false" encoding="UTF-8">
+			<src path="${src}" />
+
+			<classpath id="cp-plugin">
+				<fileset dir="${lib}" includes="kettle-core.jar" />
+				<fileset dir="${lib}" includes="kettle-db.jar" />
+				<fileset dir="${lib}" includes="kettle-engine.jar" />
+				<fileset dir="${lib}" includes="kettle-ui-swt.jar" />
+				<fileset dir="${libext}" includes="*.jar *.zip" />
+				<fileset dir="${libext}/" includes="**/*.jar *.zip" />
+				<fileset dir="${libswt}" includes="*.jar *.zip" />
+				<fileset dir="${libswt}/win64/" includes="*.jar *.zip" />
+			</classpath>
+		</javac>
+	</target>
+
+	<!--
+           ==========================
+              Copy additional files
+           ==========================
+      -->
+
+	<target name="copy" depends="compile" description="copy images etc to the classes directory">
+		<echo>Copying images etc to classes directory...</echo>
+		<copy todir="${classes}">
+			<fileset dir="${src}" includes="**/*.xml **/*.png **/*.properties" excludes="" />
+		</copy>
+	</target>
+
+	<!--
+           ==========================
+                 Plugin library
+           ==========================
+      -->
+
+	<target name="plugin" depends="compile, copy" description="generate the plugin library plugin.jar">
+		<echo>Generating the Plugin library plugin.jar ...</echo>
+		<jar jarfile="${build}/${plugin.name}.jar" basedir="${classes}" includes="**/*" excludes="**/Thumbs.db **/*.jar">
+			<manifest>
+				<attribute name="Implementation-Title" value="${impl.title}" />
+				<attribute name="Implementation-Version" value="${impl.version}" />
+				<attribute name="Specification-Version" value="${revision}" />
+				<attribute name="Implementation-Vendor" value="${impl.vendor}" />
+				<attribute name="Implementation-ProductID" value="${impl.productID}" />
+				<attribute name="Compile-Timestamp" value="${compile.timestamp}" />
+				<attribute name="Compile-User" value="${user.name}" />
+			</manifest>
+		</jar>
+
+		<echo>Copy the plugin library plugin.jar ...</echo>
+		<copy todir="${distrib}/${plugin.dir}">
+			<fileset dir="${build}" includes="**/*.jar" excludes="**/Thumbs.db" />
+		</copy>
+
+		<echo>Copy the plugin etc ...</echo>
+		<copy todir="${distrib}/${plugin.dir}">
+			<fileset dir="${resource}" includes="**/*.xml **/*.png" excludes="**/Thumbs.db" />
+		</copy>
+		<copy todir="${distrib}/${plugin.dir}">
+			<fileset dir="${libext}" includes="**/*.jar" excludes="**/Thumbs.db" />
+		</copy>
+
+	</target>
+
+	<!--
+           ==========================
+            Distribution jar package
+           ==========================
+      -->
+	<target name="distrib" depends="plugin" description="compile and copy jar files to distribution directory" />
+
+	<!--
+           ==========================
+              Default target: all
+           ==========================
+      -->
+
+	<target name="default" depends="distrib" description="default = build distribution package" />
+
+	<!--
+           ==========================
+                  C L E A N
+           ==========================
+      -->
+
+	<target name="cleandirs" description="clean up generated files">
+		<delete dir="${classes}" />
+		<delete dir="${build}" />
+		<delete dir="${distrib}" />
+	</target>
+
+	<target name="clean" depends="cleandirs" />
+
+</project>
