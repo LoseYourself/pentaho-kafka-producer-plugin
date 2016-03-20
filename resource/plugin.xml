@@ -11,19 +11,19 @@
      <library name="pentaho-kafka-producer.jar"/>
 	 <library name="kafka/jline-0.9.94.jar"/>
 	 <library name="kafka/jopt-simple-3.2.jar"/>
-	 <library name="kafka/junit-3.8.1.jar"/>
+	 <!-- <library name="kafka/junit-3.8.1.jar"/> -->
 	 <library name="kafka/kafka_2.10-0.8.2.1.jar"/>
 	 <library name="kafka/kafka-clients-0.8.2.1.jar"/>
-	 <library name="kafka/log4j-1.2.16.jar"/>
+	 <!-- <library name="kafka/log4j-1.2.16.jar"/> -->
 	 <library name="kafka/lz4-1.2.0.jar"/>
 	 <library name="kafka/metrics-core-2.2.0.jar"/>
 	 <library name="kafka/netty-3.7.0.Final.jar"/>
 	 <library name="kafka/scala-library-2.10.4.jar"/>
-	 <library name="kafka/slf4j-api-1.7.2.jar"/>
-	 <library name="kafka/slf4j-log4j12-1.6.1.jar"/>
+	 <!-- <library name="kafka/slf4j-api-1.7.2.jar"/> -->
+	 <!-- <library name="kafka/slf4j-log4j12-1.6.1.jar"/> -->
 	 <library name="kafka/snappy-java-1.1.1.6.jar"/>
-	 <library name="kafka/xercesImpl-2.9.1.jar"/>
-	 <library name="kafka/xml-apis-1.3.04.jar"/>
+	 <!-- <library name="kafka/xercesImpl-2.9.1.jar"/> -->
+	 <!-- <library name="kafka/xml-apis-1.3.04.jar"/> -->
 	 <library name="kafka/zkclient-0.3.jar"/>
 	 <library name="kafka/zookeeper-3.4.6.jar"/>
    </libraries>
